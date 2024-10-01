@@ -12,14 +12,16 @@ class Solution {
             // 2. participant 배열을 computeIfPresent를 사용해서 존재하는 참가자면 value를 1씩 증가하게 하여 map으로 만든다.
             map.computeIfPresent(p, (k, v) -> v + 1);
         }
+        
         // 3. participantMap에 completion 배열에 해당하는 이름이 있으면 value를 -1씩 한다.
         for (String c : completion) {
             map.computeIfPresent(c, (k, v) -> v - 1);
         }
+        
         // 4. value가 1인 key값을 찾는다.
-        for (Map.Entry<String, Integer> m : map.entrySet()) {
-            if (m.getValue() == 1) {
-                answer = m.getKey();
+        for (String m : map.keySet()) {
+            if (map.get(m) == 1) {
+                answer = m;
                 break;
             }
         }
